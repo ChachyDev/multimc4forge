@@ -61,7 +61,7 @@ public class LegacyInstaller implements Installer {
     }
 
     @Override
-    public void install(File installationDirectory, File forgeJar) throws IOException {
+    public File install(File installationDirectory, File forgeJar) throws IOException {
         ZipEntry versionJsonEntry = null;
         ZipEntry forgeJarEntry = null;
 
@@ -105,7 +105,7 @@ public class LegacyInstaller implements Installer {
 
             JsonObject multiMcPatch = MojangFormatConverter.convert("net.minecraftforge", version, installProfile);
 
-            createFiles(
+            return createFiles(
                 installProfile.get("id").getAsString(),
                 version,
                 mcVersion,
@@ -117,7 +117,7 @@ public class LegacyInstaller implements Installer {
         }
     }
 
-    private void createFiles(String id, String version, String mcVersion, String forgeVersion, File installationDirectory, JsonObject patch, byte[] universalJar) throws IOException {
+    private File createFiles(String id, String version, String mcVersion, String forgeVersion, File installationDirectory, JsonObject patch, byte[] universalJar) throws IOException {
         File instanceDirectory = new File(installationDirectory, "instances/".concat(id));
         instanceDirectory.mkdirs();
 
@@ -126,6 +126,8 @@ public class LegacyInstaller implements Installer {
         createPatch("net.minecraftforge", patch, instanceDirectory);
         copyLibraries(instanceDirectory, universalJar, version);
         createDotMinecraft(instanceDirectory);
+
+        return instanceDirectory;
     }
 
     private void createInstanceConfig(String id, File instanceDirectory) throws IOException {
