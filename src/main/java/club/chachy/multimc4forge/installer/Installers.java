@@ -1,4 +1,4 @@
-package club.chachy.multimc4forge.legacy;
+package club.chachy.multimc4forge.installer;
 
 import club.chachy.multimc4forge.api.Installer;
 
