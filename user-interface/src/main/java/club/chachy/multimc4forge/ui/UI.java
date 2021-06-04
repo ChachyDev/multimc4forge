@@ -40,7 +40,8 @@ public class UI {
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         }
         chooser.setDialogTitle(title);
-        chooser.setCurrentDirectory(new File(System.getProperty("user.home"), "Downloads"));
+        chooser.setCurrentDirectory(new File("."));
+
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             return chooser.getSelectedFile();
         } else {
