@@ -6,7 +6,7 @@ import java.io.File;
 public class DirectoryFilter extends FileFilter {
     @Override
     public boolean accept(File f) {
-        // Return true the configured setting will wipe out all other file types anyway...
+        // This gets overwritten by UI#L40
         return true;
     }
 
