@@ -14,5 +14,14 @@ dependencies {
 shadowJar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     configurations = [project.configurations.include]
+    archiveBaseName.set("multimc4forge")
     archiveClassifier.set("")
+
+    manifest.attributes("Main-Class": "club.chachy.multimc4forge.Main")
 }
+
+jar {
+    enabled = false
+}
+
+tasks.build.dependsOn(tasks.shadowJar)
