@@ -26,7 +26,7 @@ public class Installers {
         }
 
         if (installer == null) {
-            throw new IllegalStateException("There are no installers currently available for the provided jar...");
+            throw new IllegalStateException("There are no installers currently available for the provided jar, is it a Forge jar...?");
         }
 
         return installer;

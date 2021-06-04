@@ -10,18 +10,28 @@ import javax.swing.filechooser.FileFilter;
 import java.io.File;
 
 public class UI {
-    public static void main(String[] args) throws Throwable {
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-        File forgeJar = getFile(new JFileChooser(), "Please select a Forge INSTALLER jar", "You MUST provide a Forge Installer jar...", new JarFilter(), new ZipFilter());
+            File forgeJar = getFile(new JFileChooser(), "Please select a Forge INSTALLER jar", "You MUST provide a Forge Installer jar...", new JarFilter(), new ZipFilter());
 
-        if (forgeJar != null) {
-            File multiMcDirectory = getFile(new JFileChooser(), "Please provide your Multi", "You MUST provide a MultiMC install directory", new DirectoryFilter());
+            if (forgeJar != null) {
+                File multiMcDirectory = getFile(new JFileChooser(), "Please provide your Multi", "You MUST provide a MultiMC install directory", new DirectoryFilter());
 
-            if (multiMcDirectory != null) {
-                File location = Installers.getInstaller(forgeJar).install(multiMcDirectory, forgeJar);
-                JOptionPane.showMessageDialog(null, "Successfully installed Forge to " + location.getAbsolutePath() + "! Make sure to restart MultiMC if it was already opened", "Success! :)", JOptionPane.PLAIN_MESSAGE);
+                if (multiMcDirectory != null) {
+                    File location = Installers.getInstaller(forgeJar).install(multiMcDirectory, forgeJar);
+                    JOptionPane.showMessageDialog(null, "Successfully installed Forge to " + location.getAbsolutePath() + "! Make sure to restart MultiMC if it was already opened", "Success! :)", JOptionPane.PLAIN_MESSAGE);
+                }
             }
+        } catch (Throwable t) {
+            String message = t.getMessage();
+
+            if (message != null) {
+                JOptionPane.showMessageDialog(null, message, "An error occurred :(", JOptionPane.ERROR_MESSAGE);
+            }
+
+            t.printStackTrace();
         }
     }
 
