@@ -1,7 +1,6 @@
 package club.chachy.multimc4forge.ui;
 
 import club.chachy.multimc4forge.installer.Installers;
-import club.chachy.multimc4forge.legacy.LegacyInstaller;
 import club.chachy.multimc4forge.ui.filter.archive.JarFilter;
 import club.chachy.multimc4forge.ui.filter.archive.ZipFilter;
 import club.chachy.multimc4forge.ui.filter.directory.DirectoryFilter;
@@ -12,8 +11,6 @@ import java.io.File;
 
 public class UI {
     public static void main(String[] args) throws Throwable {
-        Installers.addInstaller(new LegacyInstaller());
-
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
         File forgeJar = getFile(new JFileChooser(), "Please select a Forge INSTALLER jar", "You MUST provide a Forge Installer jar...", new JarFilter(), new ZipFilter());

@@ -1,7 +1,6 @@
 package club.chachy.multimc4forge.cli;
 
 import club.chachy.multimc4forge.installer.Installers;
-import club.chachy.multimc4forge.legacy.LegacyInstaller;
 
 import java.io.File;
 import java.util.Arrays;
@@ -12,8 +11,6 @@ public class CLI {
         if (argsArray.length <= 0) {
             printUsage();
         }
-
-        Installers.addInstaller(new LegacyInstaller());
 
         List<String> args = Arrays.asList(argsArray);
 
@@ -64,7 +61,7 @@ public class CLI {
     private static void printUsage() {
         System.err.println("Incorrect usage of multimc4forge!");
         System.err.println("Example:");
-        System.err.println("java -jar multimc4forge.jar --jar /path/to/forge/installer.jar --directory /path/to/multimc/directory");
+        System.err.println("java -jar /path/to/multimc4forge.jar --jar /path/to/forge/installer.jar --directory /path/to/multimc/directory");
         System.exit(1); // Failed
     }
 }

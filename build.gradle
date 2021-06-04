@@ -3,6 +3,8 @@ plugins {
 }
 
 allprojects {
+    compileJava.targetCompatibility = compileJava.sourceCompatibility = targetCompatibility = sourceCompatibility = 1.8
+
     apply plugin: "java"
 
     group "club.chachy"

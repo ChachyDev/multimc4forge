@@ -1,6 +1,7 @@
 package club.chachy.multimc4forge.installer;
 
 import club.chachy.multimc4forge.api.Installer;
+import club.chachy.multimc4forge.legacy.LegacyInstaller;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,6 +12,11 @@ public class Installers {
 
     public static Installer getInstaller(File forgeJar) {
         Installer installer = null;
+
+        if (installerList.isEmpty()) {
+            // Add the defaults
+            installerList.add(new LegacyInstaller());
+        }
 
         for (Installer i : installerList) {
             if (i.detect(forgeJar)) {
